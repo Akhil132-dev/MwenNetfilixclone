@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-   "start": "nodemon index.mjs"
+    "start": "nodemon index.mjs"
   },
   "keywords": [
     "node",
@@ -17,6 +17,7 @@
   "author": "AKhilesh",
   "license": "ISC",
   "dependencies": {
+    "crypto-js": "^4.1.1",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
