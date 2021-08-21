@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-constListShcema = new mongoose.Schema(
+const ListShcema = new mongoose.Schema(
     {
         title: {
             type: String,
@@ -8,12 +8,12 @@ constListShcema = new mongoose.Schema(
             unique: true,
         },
         type: {
-            type: String,
+            type: String
         },
         genre: {
-            type: Number,
+            type: String
         },
-        content: { type: Array, default: [] },
+        content: { type: Array },
     },
     { timestamps: true }
 );
