@@ -29,7 +29,7 @@ const register_User = async (req, res) => {
 const login_User = async (req, res) => {
   try {
     const user = await User.findOne({ email: req.body.email });
-    !user && res.json(401).json("wrong password of user name");
+    !user && res.json("wrong password of user name");
     /** @dev decrpting password of user  */
     const bytes = CryptoJS.AES.decrypt(user.password, process.env.SECRECT_KEY);
     const originalText = bytes.toString(CryptoJS.enc.Utf8);
