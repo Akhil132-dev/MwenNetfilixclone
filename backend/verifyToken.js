@@ -8,6 +8,7 @@ const token = authHeader.split(" ")[1]
 jwt.verify(token,process.env.SECRECT_KEY,(err,user)=>{
     if(err)res.status(403).json("token is not valid !")
     // return user if token is valid
+    console.log(user)
     req.user = user;
     next();
 })
