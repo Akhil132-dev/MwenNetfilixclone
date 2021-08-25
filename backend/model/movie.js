@@ -7,6 +7,9 @@ const moiveShcema = new mongoose.Schema(
       required: true,
       unique: true,
     },
+    duration: {
+      type: Number,
+    },
     desc: {
       type: String,
     },
@@ -32,7 +35,7 @@ const moiveShcema = new mongoose.Schema(
       type: Number,
     },
     genre: {
-      type: Number,
+      type: String,
     },
     isSeries: { type: Boolean, default: false },
   },

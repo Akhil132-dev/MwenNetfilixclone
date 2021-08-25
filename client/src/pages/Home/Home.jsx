@@ -1,17 +1,40 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Home.scss'
 import {AcUnit} from '@material-ui/icons'
-import Header from '../Componenets/Header/Header'
-import Featured from '../Componenets/featured/Featured'
-import List from '../Componenets/List/List'
-function Home() {
+import Header from '../../Componenets/Header/Header'
+import List from '../../Componenets/List/List'
+import Featured from '../../Componenets/featured/Featured'
+import axios from 'axios'
+function Home({ type }) {
+    const [list, setlist] = useState([])
+    const [genre, setgenre] = useState(null)
+ useEffect(() => {
+     const getRandomList = async () => {
+         try {
+             const res = await axios.get(`list${type ? "?type=" + type : ""}${genre? "&genre="+genre:''}`, {
+                 headers: {
+                     token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMWY0MWU2MTQ4ZTFkNGUzNzMxMzc2YSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYyOTcwNzQzOSwiZXhwIjoxNjMwMTM5NDM5fQ.huPVkkwEQ2UteM9VAV7Lif4q2mLcM3UNbVOSqcNrr_A"
+                 }
+             })
+             setlist(res.data)
+         } catch (error) {
+             console.log(error)
+         }
+     }
+     getRandomList()
+ }, [type,genre])
+
     return (
         <div className="home">
             <Header />
-            <Featured type="movie" />
-            <List/>
-            <List/>
-            <List/>
+            <Featured type={type} />
+            {
+                list.map((l) => (
+                    <List li={l}/>
+                ))
+            }
+           
+            
         </div>
     )
 }

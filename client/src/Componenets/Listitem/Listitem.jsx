@@ -1,23 +1,40 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {Add, PlayArrow, ThumbDownAltOutlined, ThumbUpOutlined} from '@material-ui/icons'
 import './Listitem.scss'
-function Listitem({index}) {
+import axios from "axios";
+import { Link } from "react-router-dom";
+function Listitem({index,item}) {
   const [isHovered, setIsHovered] = useState(false);
+  const [movie, setmovie] = useState({})
+  useEffect(() => {
+    const getMovie = async () => {
+     try {
+       const  res  = await axios.get('/movie/find/'+item, {
+                 headers: {
+                     token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMWY0MWU2MTQ4ZTFkNGUzNzMxMzc2YSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYyOTcwNzQzOSwiZXhwIjoxNjMwMTM5NDM5fQ.huPVkkwEQ2UteM9VAV7Lif4q2mLcM3UNbVOSqcNrr_A"
+                 }
+       })
+       setmovie(res.data)
+       console.log(res.data)
+     } catch (error) {
+       console.log(error)
+     }
+   }
+   getMovie()
+  }, [])
   
-  const trailer =
-    "https://player.vimeo.com/external/371433846.sd.mp4?s=236da2f3c0fd273d2c6d9a064f3ae35579b2bbdf&profile_id=139&oauth2_token_id=57447761";
   return (
-    <div
+    <Link to ={{pathname:'/watch',movie:movie}}> <div
       className="listitem"
       style={{ left: isHovered && index * 225 - 58 + index * 2.5 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <img
-        src="https://occ-0-1723-92.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABU7D36jL6KiLG1xI8Xg_cZK-hYQj1L8yRxbQuB0rcLCnAk8AhEK5EM83QI71bRHUm0qOYxonD88gaThgDaPu7NuUfRg.jpg?r=4ee"
+        src={movie.image}
         alt=""
       />{isHovered ? <>
-        <video src={trailer} autoPlay={true} loop/>
+        <video src={movie.trailer} autoPlay={true} loop/>
       <div className="listinfo">
         <div className="icons">
           <PlayArrow className="icon"/>
@@ -26,18 +43,20 @@ function Listitem({index}) {
           <ThumbDownAltOutlined className="icon"/>
         </div>
         <div className="item__if">
-          <span>1 hour 14 min</span>
-          <span className="limit">+16</span>
-          <span>2001</span>
+            <span>{ movie.duration}</span>
+            <span className="limit">{ movie.limit}</span>
+            <span>{movie.year }</span>
         </div>
         <div className="dec">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis quos tempora, ratione accusamus doloremque debitis aspernatur 
+          {movie.desc}
         </div>
-        <div className="genre">Action</div>
+          <div className="genre">{ movie.genre}</div>
       </div>
       </>:"" }
     
     </div>
+    </Link>
+   
   );
 }
 

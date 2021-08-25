@@ -2,7 +2,7 @@ import List from "../model/list.js";
 /** @dev here we are creating list of the movies*/
 const createList = async (req, res) => {
   const newlist = await new List(req.body);
-  console.log(newlist);
+
   try {
     const savedList = await newlist.save();
 

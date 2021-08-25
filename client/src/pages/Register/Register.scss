@@ -1,7 +1,6 @@
 .register {
   width: 100vw;
   height: 100vh;
-  position: relative;
   background: linear-gradient(
       to bottom,
       rgba(0, 0, 0, 0) 0%,
@@ -9,6 +8,8 @@
     ),
     url("https://cdn.hipwallpaper.com/i/98/21/dUyCkp.jpg");
   background-size: cover;
+  position: relative;
+
   .top {
     .wrapper {
       padding: 20px 50px;
@@ -19,17 +20,16 @@
       .logo {
         height: 40px;
       }
-      .loginbutton {
-        background-color: rgb(255, 0, 0);
-        border: none;
 
-        color: #fff;
+      .loginButton {
+        background-color: red;
+        border: none;
+        color: white;
         border-radius: 5px;
         padding: 5px 15px;
         font-size: 16px;
-        font-weight: bold;
+        font-weight: 500;
         cursor: pointer;
-        outline: none;
       }
     }
   }
@@ -41,26 +41,30 @@
     top: 0;
     left: 0;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
-    color: #fff;
+    color: white;
+
     h1 {
       font-size: 50px;
     }
+
     h2 {
       margin: 20px;
     }
+
     p {
       font-size: 20px;
     }
+
     .input {
       width: 50%;
-      background-color: #fff;
+      background-color: white;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-top: 10px;
+      margin-top: 20px;
       height: 50px;
       border-radius: 5px;
 
@@ -68,18 +72,17 @@
         flex: 9;
         height: 100%;
         border: none;
-        outline: none;
         padding: 0 10px;
       }
-      .registeButton {
+
+      .registerButton {
         flex: 3;
         height: 100%;
         background-color: red;
-        color: #fff;
         border: none;
-        outline: none;
+        color: white;
+        font-size: 22px;
         cursor: pointer;
-        font-size: 20px;
       }
     }
   }
