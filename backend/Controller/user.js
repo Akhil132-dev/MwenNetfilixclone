@@ -63,7 +63,7 @@ const getAllUser = async (req, res) => {
     try {
       /** @dev if there is query then we are gona return last 10 user and if there is no query then we are gona return all the user of the webapp  */
       const users = query
-        ? await User.find().sort({ _id: -1 }).limit(10)
+        ? await User.find().sort({ _id: -1 }).limit(5)
         : await User.find();
       /**@dev sending updateted user  */
       res.status(200).json(users);
