@@ -4,11 +4,14 @@ import {
   Notifications,
   SearchOutlined,
 } from "@material-ui/icons";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { logoutStart } from "../../Aurhcontext/AuthAction";
+import { AuthContext } from "../../Aurhcontext/Authcontext";
 import "./Header.scss";
 function Header() {
   const [isScrooled, setisScrooled] = useState(false);
+  const {dispatch}   =  useContext(AuthContext)
   window.onscroll = () => {
     setisScrooled(window.pageYOffset === 0 ? false : true);
     return () => (window.onscroll = null);
@@ -52,7 +55,7 @@ function Header() {
             <ArrowDropDown className="header__icons" />
             <div className="option">
               <span>settings</span>
-              <span>logout</span>
+              <span onClick={(e)=>dispatch(logoutStart())} >logout</span>
             </div>
           </div>
         </div>

@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import { AuthContextProvider } from "./context/Aurhcontext/Authcontext";
+import { ListsContextProvider } from "./context/listContext/listcontext";
+
 import {
   MoviesContext,
   MoviesContextProvider,
@@ -11,7 +13,9 @@ ReactDOM.render(
   <React.StrictMode>
     <AuthContextProvider>
       <MoviesContextProvider>
-        <App />
+        <ListsContextProvider>
+          <App />
+        </ListsContextProvider>
       </MoviesContextProvider>
     </AuthContextProvider>
   </React.StrictMode>,

@@ -18,6 +18,9 @@ import { useContext, useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import Login from "./pages/login/Login";
 import { AuthContext } from "./context/Aurhcontext/Authcontext";
+import ListList from "./pages/Lists/ListList";
+import Lists from "./pages/list/Lists";
+import Newlist from "./pages/newlist/newlist";
 function App() {
   const { user } = useContext(AuthContext);
   return (
@@ -51,6 +54,15 @@ function App() {
               </Route>
               <Route path="/newproduct">
                 <NewProduct />
+              </Route>
+              <Route path="/list">
+                <ListList />
+              </Route>
+              <Route path="/list/:listId">
+                <Lists />
+              </Route>
+              <Route path="/newlist">
+                <Newlist />
               </Route>
             </div>
           </>

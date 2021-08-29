@@ -1,6 +1,16 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
+import { login } from '../../Aurhcontext/API/APICALL'
+import { AuthContext } from '../../Aurhcontext/Authcontext'
 import './login.scss'
 function Login() {
+  const [email, setemail] = useState('')
+  const [password, setpassword] = useState('')
+  const { dispatch } = useContext(AuthContext)
+  const handlesubmit = (e) => {
+        console.log("log")
+    e.preventDefault()
+    login({email,password},dispatch)
+  }
     return (
   <div className="login">
       <div className="top">
@@ -16,9 +26,12 @@ function Login() {
    
                 <form>
                     <h1>Sing In</h1>
-                    <input type="email"  placeholder="Enter your email or phone number"/>
-                    <input type="password" placeholder="Enter your password" />
-                    <button className="loginbutton">
+            <input type="email" placeholder="Enter your email or phone number"
+              value={email}
+            onChange={(e)=>setemail(e.target.value)}
+            />
+                    <input type="password" value={password} placeholder="Enter your password" onChange={(e)=>setpassword(e.target.value)} />
+                    <button className="loginbutton" onClick={handlesubmit} >
                         Sign In
                     </button>
                     <span>New to Netflix ?

@@ -31,10 +31,9 @@ const MONTHS = useMemo(
     const getStats = async () => {
       try {
         const res = await axios.get("/user/state", {
-          headers: {
-            token:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMWY0MWU2MTQ4ZTFkNGUzNzMxMzc2YSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYyOTcwNzQzOSwiZXhwIjoxNjMwMTM5NDM5fQ.huPVkkwEQ2UteM9VAV7Lif4q2mLcM3UNbVOSqcNrr_A",
-          },
+         headers: {
+        token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
+      },
         });
         const statlist = res.data.sort(function (a, b) {
           return a._id - b._id

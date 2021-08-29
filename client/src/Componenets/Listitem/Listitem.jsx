@@ -10,9 +10,9 @@ function Listitem({index,item}) {
     const getMovie = async () => {
      try {
        const  res  = await axios.get('/movie/find/'+item, {
-                 headers: {
-                     token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMWY0MWU2MTQ4ZTFkNGUzNzMxMzc2YSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYyOTcwNzQzOSwiZXhwIjoxNjMwMTM5NDM5fQ.huPVkkwEQ2UteM9VAV7Lif4q2mLcM3UNbVOSqcNrr_A"
-                 }
+                  headers: {
+        token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
+      }
        })
        setmovie(res.data)
        console.log(res.data)
@@ -31,10 +31,10 @@ function Listitem({index,item}) {
       onMouseLeave={() => setIsHovered(false)}
     >
       <img
-        src={movie.image}
+        src={movie?.image}
         alt=""
       />{isHovered ? <>
-        <video src={movie.trailer} autoPlay={true} loop/>
+        <video src={movie?.trailer} autoPlay={true} loop/>
       <div className="listinfo">
         <div className="icons">
           <PlayArrow className="icon"/>
@@ -43,14 +43,14 @@ function Listitem({index,item}) {
           <ThumbDownAltOutlined className="icon"/>
         </div>
         <div className="item__if">
-            <span>{ movie.duration}</span>
-            <span className="limit">{ movie.limit}</span>
-            <span>{movie.year }</span>
+            <span>{ movie?.duration}</span>
+            <span className="limit">{ movie?.limit}</span>
+            <span>{movie?.year }</span>
         </div>
         <div className="dec">
-          {movie.desc}
+          {movie?.desc}
         </div>
-          <div className="genre">{ movie.genre}</div>
+          <div className="genre">{ movie?.genre}</div>
       </div>
       </>:"" }
     

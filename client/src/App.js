@@ -9,9 +9,10 @@ import {
   Switch,
 } from "react-router-dom";
 import Home from "./pages/Home/Home";
-
+import { AuthContext } from "./Aurhcontext/Authcontext";
+import { useContext } from "react";
 function App() {
-  const user = true;
+  const { user } = useContext(AuthContext);
   return (
     <div className="App">
       <Router>

@@ -12,9 +12,9 @@ function Home({ type }) {
      const getRandomList = async () => {
          try {
              const res = await axios.get(`list${type ? "?type=" + type : ""}${genre? "&genre="+genre:''}`, {
-                 headers: {
-                     token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMWY0MWU2MTQ4ZTFkNGUzNzMxMzc2YSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYyOTcwNzQzOSwiZXhwIjoxNjMwMTM5NDM5fQ.huPVkkwEQ2UteM9VAV7Lif4q2mLcM3UNbVOSqcNrr_A"
-                 }
+                  headers: {
+        token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
+      },
              })
              setlist(res.data)
          } catch (error) {
@@ -27,7 +27,7 @@ function Home({ type }) {
     return (
         <div className="home">
             <Header />
-            <Featured type={type} />
+            <Featured type={type} setgenre={setgenre} />
             {
                 list.map((l) => (
                     <List li={l}/>
